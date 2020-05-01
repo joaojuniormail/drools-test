@@ -1,25 +1,24 @@
 package com.soluti.projecttest.rules
 
-import com.soluti.projecttest.enum.CardTypeEnum
 import com.soluti.projecttest.model.Order
 
 rule "MasterCard"
     when
-        orderObject : Order(cardType == CardTypeEnum.MASTERCARD.type && price >= 10000.0)
+        orderObject : Order(cardType == "MasterCard" && price >= 10000.0)
     then
-        orderObject.discount = 10;
+        orderObject.setDiscount(10);
 end
 
 rule "Visa"
     when
-        orderObject : Order(cardType == CardTypeEnum.VISA.type && price >= 15000.0)
+        orderObject : Order(cardType == "Visa" && price >= 15000.0)
     then
-        orderObject.discount = 8;
+        orderObject.setDiscount(8);
 end
 
 rule "AmericanExpress"
     when
-        orderObject: Order(cardType == CardTypeEnum.AMERICANEXPRESS.type && price >= 15000.0 )
+        orderObject: Order(cardType == "AmericaExpress" && price >= 15000.0 )
     then
-        orderObject.discount = 15;
+        orderObject.setDiscount(15);
 end
